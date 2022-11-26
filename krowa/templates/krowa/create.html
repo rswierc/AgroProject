@@ -1,0 +1,14 @@
+{% load static %}
+<html>
+<head>
+    <title>My Webpage</title>
+</head>
+<body>   
+    <form method="post">
+            {{ form }}
+        {% csrf_token %}
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>
+

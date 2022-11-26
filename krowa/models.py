@@ -18,8 +18,3 @@ class Krowa(models.Model):
     sale_date = models.DateField(blank=True, null=True)
     calving_date = models.DateField(blank=True, null=True) #wycielenie
     estrus_date = models.DateField(blank=True, null=True) #ruja
-
-
-class Post(models.Model):
-    title = models.CharField(max_length=25)
-    body = models.CharField(max_length=500)

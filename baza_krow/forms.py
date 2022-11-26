@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .models import Krowa
+from .models import Post
 
 
-class KrowaForm(ModelForm):
+class PostForm(ModelForm):
     class Meta:
-        model = Krowa
+        model = Post
         fields = '__all__'

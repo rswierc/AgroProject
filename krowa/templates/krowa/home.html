@@ -1,0 +1,34 @@
+{% load static %}
+<html>
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td>Numer kolczyka</td>
+            <td>Data urodzenia</td>
+            <td>Płeć</td>
+            <td>Wycielenie</td>
+            <td>Ruja</td>
+            <td>Data sprzedaży</td>
+            <td>Cena sprzedaży</td>
+            <td>Kupiec</td>
+        </tr>
+        {% for k in krowa %}
+        <tr>
+            <td>{{k.earring_number}}</td>
+            <td>{{k.birth_date}}</td>
+            <td>{{k.sex}}</td>
+            <td>{{k.calving_date}}</td>
+            <td>{{k.estrus_date}}</td>
+            <td>{{k.sale_date}}</td>
+            <td>{{k.sale_price}}</td>
+            <td>{{k.buyer}}</td>
+        </tr>
+        {% endfor %}
+      </table>      
+     
+</body>
+</html>
+

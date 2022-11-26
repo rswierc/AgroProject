@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from baza_krow.views import welcome
+from krowa.views import KrowaView, home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', welcome), 
+    path('', home)
 ]

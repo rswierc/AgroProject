@@ -1,0 +1,46 @@
+{% extends 'Cows/base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+{% block content %}
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Nr kolczyka</th>
+      <th>Data urodzenia</th> 
+      <th>Płeć</th>
+      <th>Data wycielenia</th>
+      <th>Data rui</th>
+      <th>Kupiec</th>
+      <th>Data zakupu</th>
+      <th>Cena zakupu</th>
+    </tr>
+    {% for k in cows %}
+    <tr>
+      <td>{{k.id}}</td>
+      <td>{{k.earring_number}}</td>
+      <td>{{k.birth_date}}</td>
+      <td>{{k.sex}}</td>
+      <td>{{k.calving_date}}</td>
+      <td>{{k.estrus_date}}</td>
+      <td>{{k.buyer}}</td>
+      <td>{{k.sale_date}}</td>
+      <td>{{k.sale_price}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Edycja:</h2>
+  <p>Usuwanie: </p> 
+  <form action= "delete/">
+    {{form}}
+    <button id="button" class="btn" onclick="alert ('Usunieto krowe')">Usuń krowę</button>
+  </form>
+{% endblock %}
+</body>
+</html>
+
+

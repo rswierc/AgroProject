@@ -1,4 +1,4 @@
-{% extends 'Cows/base.html' %}
+{% extends 'MainPage/main.html' %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +17,8 @@
       <th>Kupiec</th>
       <th>Data zakupu</th>
       <th>Cena zakupu</th>
+      <th>Aktualizuj</th>
+      <th>Usuń</th>
     </tr>
     {% for k in cows %}
     <tr>
@@ -29,16 +31,11 @@
       <td>{{k.buyer}}</td>
       <td>{{k.sale_date}}</td>
       <td>{{k.sale_price}}</td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</td>
     </tr>
     {% endfor %}
   </table>
-
-  <h2>Edycja:</h2>
-  <p>Usuwanie: </p> 
-  <form action= "delete/">
-    {{form}}
-    <button id="button" class="btn" onclick="alert ('Usunieto krowe')">Usuń krowę</button>
-  </form>
 {% endblock %}
 </body>
 </html>

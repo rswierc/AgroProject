@@ -15,11 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Cows.views import cows_table, get_cow, delete
-
+from Cows import views as CowView
+from MainPage import views as MainPageView
+from Sheep import views as SheepView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('table/', cows_table),
-    path('create/', get_cow),
-    path('table/delete/', delete)
+    path('', MainPageView.main),
+    path('cow/table/', CowView.cows_table),
+    path('cow/create/', CowView.get_cow),
+    path('cow/new/', CowView.createCow),
+    path('cow/update/<str:pk>', CowView.updateCow, name="update"),
+    path('cow/delete/<str:pk>', CowView.deleteCow, name="delete"),
+    path('cow/sort', CowView.sortEaringNum , name="sort"),
+
 ]

@@ -1,9 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CreateNewCow, ID
+from .forms import CreateNewCow, CowForm
 from .models import Cow
-
-
 
 def cows_table(request):
     return render(request, "Cows/table.html", {
@@ -20,13 +18,50 @@ def get_cow(request):
             t = Cow(earring_number=m, birth_date=n, sex=o)
             t.save()
             return HttpResponse("Thanks, all data is valid")
-    else: #if it is smth else create blank class
+    else:
         form = CreateNewCow() 
     
     return render(request, "Cows/create.html", {"form": form})
 
 
-def delete(request, id):
-    cow_to_delete = Cow.objects.filter(ID = id)
-    cow_to_delete.delete()
+def createCow(request):
+    if request.method == 'POST':
+        form = CowForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/cow/table")
+    else:
+        form = CowForm() 
     
+    context = {"form": form}
+    return render(request, "Cows/order_form.html", context)
+
+
+def updateCow(request, pk):
+
+    cow = Cow.objects.get(id = pk)
+    form = CowForm(instance=cow)
+
+    if request.method == 'POST':
+        form = CowForm(request.POST, instance=cow)
+        if form.is_valid():
+            form.save()
+            return redirect("/cow/table")
+    
+    context = {"form": form}
+    return render(request, "Cows/order_form.html", context)
+
+
+def deleteCow(request, pk):
+    Cow.objects.filter(id=pk).delete()
+    form = CowForm()
+    return render(request, 'Cows/table.html', {"cows": Cow.objects.all()})
+
+
+def sortEaringNum(request): #sortowanie
+    sorted_cows = Cow.objects.all().order_by('birth_date').values()
+    context = {
+        'cows': sorted_cows,
+    }
+
+    return render(request, 'Cows/table.html', context)

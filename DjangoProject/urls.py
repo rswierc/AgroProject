@@ -20,10 +20,10 @@ from MainPage import views as MainPageView
 from Sheep import views as SheepView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', MainPageView.main),
+    path('', MainPageView.weather),
     path('cow/table/', CowView.cows_table),
-    path('cow/create/', CowView.get_cow),
-    path('cow/new/', CowView.createCow),
+    path('cow/get/', CowView.get_cow),
+    path('cow/create/', CowView.createCow),
     path('cow/update/<str:pk>', CowView.updateCow, name="update"),
     path('cow/delete/<str:pk>', CowView.deleteCow, name="delete"),
     path('cow/sort', CowView.sortEaringNum , name="sort"),

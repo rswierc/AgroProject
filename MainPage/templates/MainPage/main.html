@@ -1,66 +1,57 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Agro application</title>
-        <style>
-            body {
-              margin: 0;
-              font-family: Arial, Helvetica, sans-serif;
-            }
-            
-            .topnav {
-              overflow: hidden;
-              background-color: #333;
-            }
-            
-            .topnav a {
-              float: left;
-              color: #f2f2f2;
-              text-align: center;
-              padding: 14px 16px;
-              text-decoration: none;
-              font-size: 17px;
-            }
-            
-            .topnav a:hover {
-              background-color: #ddd;
-              color: black;
-            }
-            
-            .topnav a.active {
-              background-color: #04AA6D;
-              color: white;
-            }
+<html lang="pl-PL">
+    
+<head>
+    <title>Agro application</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'formating.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
 
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-              }
-              
-              td, th {
-                border: 1px solid black;
-                text-align: left;
-                padding: 8px;
-                border-collapse: collapse;
-              }
-              
-              tr:nth-child(even) {
-                background-color: #dddddd;
-              }
-            
-        </style>
-    </head>
-    <body>
-        <div class="topnav">
-            <a href="/">Strona domowa</a>
-            <a href="/cow/table/">Krowy</a>
-            <a href="/new">Owce</a>
-            <a href="#about">Pole</a>
-        </div>
-          
-        {% block content %}
-        {% endblock %}
-    </body>
+</head>
+
+<body>
+<div class="topnav">
+    <a href="/">Home</a>
+    <div class="subnav">
+        <button class="subnavbtn">Krowy <i class="fa fa-caret-down"></i></button>
+        <div class="subnav-content">
+            <a href="/cow/table">Lista krów</a>
+            <a href="/cow/create">Dodaj krowę</a>
+        </div> 
+    </div>
+
+    <div class="subnav">
+        <button class="subnavbtn">Owce <i class="fa fa-caret-down"></i></button>
+        <div class="subnav-content">
+            <a href="/cow/table">Lista owiec</a>
+            <a href="/cow/create">Dodaj owcę</a>
+        </div> 
+    </div>
+    
+    <div class="subnav">
+        <button class="subnavbtn">Pole <i class="fa fa-caret-down"></i></button>
+        <div class="subnav-content">
+            <a href="/todo">Lista działek</a>
+            <a href="/todo">Dodaj działkę</a>
+            <a href="/todo">NPK</a>
+            <a href="/todo">Przeliczenie środków</a>
+        </div> 
+    </div>
+
+    <div class="subnav">
+        <button class="subnavbtn">Kilometrówka <i class="fa fa-caret-down"></i></button>
+        <div class="subnav-content">
+            <a href="/todo">Archiwum</a>
+            <a href="/todo">Nowa kilometrówka</a>
+        </div> 
+    </div>
+</div>
+    
+{% block content %}
+
+{% endblock %}
+
+</body>
+
 </html>
+

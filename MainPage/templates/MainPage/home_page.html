@@ -1,10 +1,33 @@
 {% extends 'MainPage/main.html' %}    
 {% block content %}
     <div class = "container">
-        <div class = "box"> 1 </div>
-        <div class = "box"> 2 </div>
-        <div class = "box"> 3 </div>
-        <div class = "box"> 4 </div>
+        <div> 
+            {% for item in weather %}
+                <img src="http://openweathermap.org/img/w/{{item.icon}}.png" alt="Image" style="float:left;width:65px;height:65px;">
+                <span style="font-size: 20px">{{item.city}}</span>  
+                <br>
+                Temperatura: {{item.temperature}} [°C] 
+                <br>
+                Zachmurzenie: {{item.clouds}} [%]
+                <br>
+                Wiatr: {{item.wind}} [m/s]
+                {% if item.city != 'Bierdzany'%}
+                <hr>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div>  
+            <a href="https://www.topagrar.pl" target="_blank"> <img src="https://www.topagrar.pl/assets/images/logo-tap.svg" alt="TopAgrar"> </a>
+            <a href="https://www.farmer.pl" target="_blank"> <img src="https://www.farmer.pl/images/2022/farmer.svg" alt="farmer.pl"> </a>
+            <a href="https://www.rolpetrol.com.pl" target="_blank"> <img src="https://www.rolpetrol.com.pl/wp-content/themes/rp/assets/logo.jpg" alt="Rolpetrol"> </a>
+            <a href="https://www.olx.pl" target="_blank"> <img src="https://static.olx.pl/static/olxpl/naspersclassifieds-regional/olxeu-atlas-web/static/svg/redesign/christmas-logo.svg" alt="OLX"> </a>
+            <a href="https://www.agriaffaires.pl" target="_blank"> <img width=100px  src="data:image/png;base64,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" alt="Agriffaires"> </a>  
+            <a href="https://www.gov.pl/web/arimr" target="_blank"> <img width=200px src="https://www.gov.pl/photo/format/b06fa70e-bdaa-4ced-86f4-7ab8d7d59c04/resolution/1920x810" alt="ARiMR"> </a>
+        
+        </div>
+
+        <div class = "box"> Kalendarz </div>
+        <div class = "box"> notatki </div>
     </div>
 
 {% endblock %}

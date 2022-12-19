@@ -1,9 +1,48 @@
 .container {
+    position: absolute;
+    top : 100px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     display: grid;
+    width: 810px;
+    height: 710px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
 }
 
-.box {
-    background: #222; color: #fff;
+.container div:nth-child(1) {
+    background: #333; color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px black;
 }
+
+.container div:nth-child(2){
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    grid-template-rows: repeat(3, 1fr);
+    background: #fff; color: #fff;
+    border-radius: 15px;
+    border: 2px black solid;
+}
+
+.container div:nth-child(3) {
+    background: #333; color: #fff;
+    border-radius: 15px;
+}
+
+img {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.container div:nth-child(4) {
+    background: #333; color: #fff;
+    border-radius: 15px;
+}
+

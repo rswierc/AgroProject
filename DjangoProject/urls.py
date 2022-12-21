@@ -21,12 +21,11 @@ from Sheep import views as SheepView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainPageView.weather),
-    path('cow/table/', CowView.cows_table),
-    path('cow/get/', CowView.get_cow),
+    path('cow/table/', CowView.sortCow),
     path('cow/create/', CowView.createCow, name="create"),
     path('cow/update/<str:pk>', CowView.updateCow, name="update"),
     path('cow/delete/<str:pk>', CowView.deleteCow, name="delete"),
-    path('cow/sort/ ', CowView.sortEaringNum, name="sort"),
     path('cow/search', CowView.searchEaringNum, name="cow/search"),
+    path('cow/sort', CowView.sortCow, name="cow/sort"),
 
 ]

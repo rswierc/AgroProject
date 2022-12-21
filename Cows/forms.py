@@ -1,12 +1,5 @@
-from .models import Cow
+from .models import Cow, Sorting
 from django import forms
-
-
-
-class CreateNewCow(forms.Form):
-    earring_number = forms.CharField(label=" kolczyka", max_length=10)
-    birth_date = forms.DateField(label="Data")
-    sex = forms.CharField(max_length=5)
 
 class CowForm(forms.ModelForm):
     class Meta:
@@ -15,3 +8,8 @@ class CowForm(forms.ModelForm):
         widgets = {
             'birth_date': forms.DateInput()
         }
+
+class SortingForm(forms.ModelForm):
+    class Meta:
+        model = Sorting
+        fields = '__all__'

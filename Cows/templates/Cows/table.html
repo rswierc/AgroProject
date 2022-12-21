@@ -8,7 +8,11 @@
     </form>
   </div>
   <div class = "item2">
-    <a class="btn btn-sm btn-info" href="{% url 'sort' %}">Data urodzenia</a>
+    <form method="post">
+      {{ form }}
+      {% csrf_token %}
+      <button type="submit">Sortuj</button>
+  </form>
   </div>
 </div>
 <table class="center">

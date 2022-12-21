@@ -25,4 +25,4 @@ class Sorting(models.Model):
         ('birth_date', ('Data urodzenia')),
         ('sex', ('Płeć')),
     )
-    sex = models.CharField(max_length=20, choices=SORTING_CHOICE)
+    choice = models.CharField( max_length=20, choices=SORTING_CHOICE)

@@ -7,7 +7,9 @@
       <input type="submit">
     </form>
   </div>
-  <div class = "item2">Sortowanie</div>
+  <div class = "item2">
+    <a class="btn btn-sm btn-info" href="{% url 'sort' %}">Data urodzenia</a>
+  </div>
 </div>
 <table class="center">
   <tr>
@@ -34,15 +36,14 @@
     <td>{{k.buyer}}</td>
     <td>{{k.sale_date}}</td>
     <td>{{k.sale_price}}</td>
-    <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</td>
-    <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</a></td>
   </tr>
   {% endfor %}
 </table>
 
 
 {% endblock %}
-</body>
-</html>
+
 
 

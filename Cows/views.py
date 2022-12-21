@@ -57,7 +57,7 @@ def deleteCow(request, pk):
     return render(request, 'Cows/table.html', {"cows": Cow.objects.all()})
 
 
-def sortEaringNum(request): #sortowanie
+def sort_cow(request): #sortowanie
     sorted_cows = Cow.objects.all().order_by('birth_date').values()
     context = {
         'cows': sorted_cows,

@@ -26,7 +26,7 @@ urlpatterns = [
     path('cow/create/', CowView.createCow, name="create"),
     path('cow/update/<str:pk>', CowView.updateCow, name="update"),
     path('cow/delete/<str:pk>', CowView.deleteCow, name="delete"),
-    path('cow/sort', CowView.sortEaringNum, name="sort"),
+    path('cow/sort/ ', CowView.sortEaringNum, name="sort"),
     path('cow/search', CowView.searchEaringNum, name="cow/search"),
 
 ]

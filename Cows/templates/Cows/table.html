@@ -1,41 +1,48 @@
 {% extends 'MainPage/main.html' %}
-<!DOCTYPE html>
-<html>
-<head>
-
-</head>
-<body>
 {% block content %}
-  <table class="center">
-    <tr>
-      <th>ID</th>
-      <th>Nr kolczyka</th>
-      <th>Data urodzenia</th> 
-      <th>Płeć</th>
-      <th>Data wycielenia</th>
-      <th>Data rui</th>
-      <th>Kupiec</th>
-      <th>Data zakupu</th>
-      <th>Cena zakupu</th>
-      <th>Aktualizuj</th>
-      <th>Usuń</th>
-    </tr>
-    {% for k in cows %}
-    <tr>
-      <td>{{k.id}}</td>
-      <td>{{k.earring_number}}</td>
-      <td>{{k.birth_date}}</td>
-      <td>{{k.sex}}</td>
-      <td>{{k.calving_date}}</td>
-      <td>{{k.estrus_date}}</td>
-      <td>{{k.buyer}}</td>
-      <td>{{k.sale_date}}</td>
-      <td>{{k.sale_price}}</td>
-      <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</td>
-      <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</td>
-    </tr>
-    {% endfor %}
-  </table>
+<div class="grid-container">
+  <div class="item1">
+
+  </div>
+  <div class = "item2">2</div>
+</div>
+<table class="center">
+  <tr>
+    <th>ID</th>
+    <th>Nr kolczyka</th>
+    <th>Data urodzenia</th> 
+    <th>Płeć</th>
+    <th>Data wycielenia</th>
+    <th>Data rui</th>
+    <th>Kupiec</th>
+    <th>Data zakupu</th>
+    <th>Cena zakupu</th>
+    <th>Aktualizuj</th>
+    <th>Usuń</th>
+  </tr>
+  {% for k in cows %}
+  <tr>
+    <td>{{k.id}}</td>
+    <td>{{k.earring_number}}</td>
+    <td>{{k.birth_date}}</td>
+    <td>{{k.sex}}</td>
+    <td>{{k.calving_date}}</td>
+    <td>{{k.estrus_date}}</td>
+    <td>{{k.buyer}}</td>
+    <td>{{k.sale_date}}</td>
+    <td>{{k.sale_price}}</td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form }}
+
+  <button type="submit">Search</button>
+</form>
 {% endblock %}
 </body>
 </html>

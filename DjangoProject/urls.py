@@ -23,9 +23,10 @@ urlpatterns = [
     path('', MainPageView.weather),
     path('cow/table/', CowView.cows_table),
     path('cow/get/', CowView.get_cow),
-    path('cow/create/', CowView.createCow),
+    path('cow/create/', CowView.createCow, name="create"),
     path('cow/update/<str:pk>', CowView.updateCow, name="update"),
     path('cow/delete/<str:pk>', CowView.deleteCow, name="delete"),
     path('cow/sort', CowView.sortEaringNum , name="sort"),
+    path('cow/search', CowView.searchEaringNum),
 
 ]

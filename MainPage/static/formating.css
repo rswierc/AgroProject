@@ -6,12 +6,20 @@ body {
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
-    }
-    
+    width: 80%;
+
+}
+
+table.center{
+    position: relative;
+    top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 td, th {
     border: 1px solid black;
-    text-align: left;
+    text-align: center;
     padding: 8px;
     border-collapse: collapse;
 }
@@ -19,6 +27,8 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+tr:hover{background-color: #04AA6D;}
 
 
 /* Top navigation panel */ 

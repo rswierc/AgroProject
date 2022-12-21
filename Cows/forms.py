@@ -4,7 +4,7 @@ from django import forms
 
 
 class CreateNewCow(forms.Form):
-    earring_number = forms.CharField(label="Numer kolczyka", max_length=10)
+    earring_number = forms.CharField(label=" kolczyka", max_length=10)
     birth_date = forms.DateField(label="Data")
     sex = forms.CharField(max_length=5)
 
@@ -15,3 +15,6 @@ class CowForm(forms.ModelForm):
         widgets = {
             'birth_date': forms.DateInput()
         }
+
+class SearchCow(forms.Form):
+    earring_number = forms.CharField(label="Numer kolczyka", max_length=10)

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CreateNewCow, CowForm, SearchCow
+from .forms import CreateNewCow, CowForm
 from .models import Cow
 
 def cows_table(request):
@@ -38,7 +38,6 @@ def createCow(request):
 
 
 def updateCow(request, pk):
-
     cow = Cow.objects.get(id = pk)
     form = CowForm(instance=cow)
 
@@ -67,14 +66,9 @@ def sortEaringNum(request): #sortowanie
     return render(request, 'Cows/table.html', context)
 
 def searchEaringNum(request):
-    if request.method == 'POST':
-        form = SearchCow(request.POST)
-        if form.is_valid():
-            m = form.cleaned_data["earring_number"]
-            t = Cow(earring_number=m)
-            t.save()
-            return HttpResponse("Thanks, all data is valid")
-    else:
-        form = SearchCow() 
+    if request.method == "GET":
+        earring_num = request.GET["earring_num"]
     
-    return render(request, "Cows/table.html", {"form": form})
+    cows = Cow.objects.filter(earring_number=earring_num).values()
+    context = {"cows": cows}
+    return render(request, "Cows/table.html", context)

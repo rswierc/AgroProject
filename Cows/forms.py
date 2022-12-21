@@ -15,6 +15,3 @@ class CowForm(forms.ModelForm):
         widgets = {
             'birth_date': forms.DateInput()
         }
-
-class SearchCow(forms.Form):
-    earring_number = forms.CharField(label="Numer kolczyka", max_length=10)

@@ -1,9 +1,11 @@
 {% extends 'MainPage/main.html' %}
 {% block content %}
-    <form method="post">
-        {{ form }}
-        {% csrf_token %}
-        <button type="submit">Create</button>
-    </form>
+<div class="d-flex justify-content-center">
+<form method="post" class="form-group w-50">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Dodaj</button>
+</form>
+</div>
 {% endblock %}
 

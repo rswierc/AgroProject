@@ -11,7 +11,6 @@ def cows_table(request):
     }
     return render(request, 'Cows/table.html', context)
 
-
 # creating cow
 def createCow(request):
     if request.method == 'POST':
@@ -23,7 +22,7 @@ def createCow(request):
         form = CowForm() 
     
     context = {"form": form}
-    return render(request, "Cows/order_form.html", context)
+    return render(request, "Cows/create.html", context)
 
 # note cow
 def noteCow(request, pk):

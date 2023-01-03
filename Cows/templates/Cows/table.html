@@ -3,16 +3,14 @@
 <div class="grid-container">
   <div class="item1">
     <form action="/cow/search">
+      Szukaj po numerze kolczyka:
       <input type="text" name="earring_num">
-      <input type="submit">
     </form>
   </div>
   <div class = "item2">
-    <form method="post">
-      {{ form }}
-      {% csrf_token %}
-      <button type="submit">Sortuj</button>
-  </form>
+    <a class="btn btn-sm btn-info" href="{% url 'sort_birth_date'  %}">Sortuj po dacie urodzenia</a>
+    <a class="btn btn-sm btn-info" href="{% url 'sort_birth_sale'  %}">Sortuj po cenie sprzedazy</a>
+    <a class="btn btn-sm btn-info" href="{% url 'sort_birth_sex'  %}">Sortuj po płci</a>
   </div>
 </div>
 <table class="center">
@@ -26,6 +24,7 @@
     <th>Kupiec</th>
     <th>Data zakupu</th>
     <th>Cena zakupu</th>
+    <th>Notatki</th>
     <th>Aktualizuj</th>
     <th>Usuń</th>
   </tr>
@@ -40,6 +39,7 @@
     <td>{{k.buyer}}</td>
     <td>{{k.sale_date}}</td>
     <td>{{k.sale_price}}</td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'note' k.id %}">Notatka</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</a></td>
   </tr>

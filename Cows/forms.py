@@ -1,4 +1,4 @@
-from .models import Cow, Sorting
+from .models import Cow
 from django import forms
 
 class CowForm(forms.ModelForm):
@@ -9,7 +9,7 @@ class CowForm(forms.ModelForm):
             'birth_date': forms.DateInput()
         }
 
-class SortingForm(forms.ModelForm):
+class CowNote(forms.ModelForm):
     class Meta:
-        model = Sorting
-        fields = '__all__'
+        model = Cow
+        fields = ('note',)

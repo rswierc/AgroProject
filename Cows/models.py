@@ -18,11 +18,5 @@ class Cow(models.Model):
     sale_date = models.DateField(blank=True, null=True)
     calving_date = models.DateField(blank=True, null=True) #wycielenie
     estrus_date = models.DateField(blank=True, null=True) #ruja
-    # notatki
+    note = models.TextField(blank=True, max_length=1000, null=True)
 
-class Sorting(models.Model):
-    SORTING_CHOICE = (
-        ('birth_date', ('Data urodzenia')),
-        ('sex', ('Płeć')),
-    )
-    choice = models.CharField( max_length=20, choices=SORTING_CHOICE)

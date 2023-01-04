@@ -36,7 +36,7 @@ def noteCow(request, pk):
             return redirect("/cow/table")
     
     context = {"form": form}
-    return render(request, "Cows/order_form.html", context)
+    return render(request, "Cows/create.html", context)
 
 # update cow
 def updateCow(request, pk):
@@ -50,7 +50,7 @@ def updateCow(request, pk):
             return redirect("/cow/table")
     
     context = {"form": form}
-    return render(request, "Cows/order_form.html", context)
+    return render(request, "Cows/create.html", context)
 
 
 # delete cow

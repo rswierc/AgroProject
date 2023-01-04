@@ -1,18 +1,32 @@
 {% extends 'MainPage/main.html' %}
 {% block content %}
-<div class="grid-container">
-  <div class="item1">
-    <form action="/cow/search">
-      Szukaj po numerze kolczyka:
-      <input type="text" name="earring_num">
-    </form>
-  </div>
-  <div class = "item2">
-    <a class="btn btn-sm btn-info" href="{% url 'sort_birth_date'  %}">Sortuj po dacie urodzenia</a>
-    <a class="btn btn-sm btn-info" href="{% url 'sort_birth_sale'  %}">Sortuj po cenie sprzedazy</a>
-    <a class="btn btn-sm btn-info" href="{% url 'sort_birth_sex'  %}">Sortuj po płci</a>
+<div class="container">
+  <div class="row" style="margin-top:60px">
+    <div class="col-md-4 offset-md-2" >
+      <form action="/cow/search">
+        <input type="text" name="earring_num" placeholder="Numer kolczyka">
+        <button class="btn btn-success" type="submit">Szukaj</button>
+      </form>
+    </div>
+
+    <div class="col-md-4" >
+      <div class="dropdown" style="margin-bottom:40px" >
+        <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sortowanie
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="{% url 'sort_birth_date' %}">Sortuj po dacie urodzenia</a></li>
+          <li><a class="dropdown-item" href="{% url 'sort_birth_sale' %}">Sortuj po cenie sprzedazy</a></li>
+          <li><a class="dropdown-item" href="{% url 'sort_birth_sex'  %}">Sortuj po płci</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+
 <table class="center">
   <tr>
     <th>ID</th>
@@ -45,6 +59,7 @@
   </tr>
   {% endfor %}
 </table>
+
 
 
 {% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import CowForm, CowNote
 from .models import Cow
+from django.db.models.functions import Coalesce
 
 # main table view
 def cows_table(request):
@@ -17,7 +18,7 @@ def createCow(request):
         form = CowForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/cow/table")
+        return redirect("/cow/table")
     else:
         form = CowForm() 
     

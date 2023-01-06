@@ -8,20 +8,21 @@ class CowForm(forms.ModelForm):
         widgets = {
             'earring_number' : forms.TextInput(attrs={'class': 'form-control'}),
             'birth_date': forms.DateInput(format=('%Y-%m-%d'),
-                 attrs={'class': 'form-control', 
-                    'type': 'date'}),
+                 attrs={'class': 'form-control',
+                        'type': 'date'}),
             'sex' : forms.Select(attrs={'class': 'form-control'}),
             'buyer' : forms.TextInput(attrs={'class': 'form-control'}),
             'sale_price' : forms.NumberInput(attrs={'class': 'form-control'}),
+
             'sale_date' : forms.DateInput(format=('%Y-%m-%d'),
-                 attrs={'class': 'form-control', 
-                'type': 'date'}),
+                attrs={'class': 'form-control',
+                        'type': 'date'}),
             'calving_date' : forms.DateInput(format=('%Y-%m-%d'),
                  attrs={'class': 'form-control', 
-                'type': 'date'}),
+                        'type': 'date'}),
             'estrus_date' : forms.DateInput(format=('%Y-%m-%d'),
                  attrs={'class': 'form-control', 
-                'type': 'date'}),
+                        'type': 'date'}),
             'note' : forms.TextInput(attrs={'class': 'form-control'}),
         }
 

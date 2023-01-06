@@ -15,7 +15,7 @@ class Cow(models.Model):
 
     buyer = models.CharField(max_length=20, blank=True, null=True)
     sale_price = models.FloatField(blank=True, null=True)
-    sale_date = models.DateField(blank=True, null=True)
+    sale_date = models.DateField(blank=True, null=True, )
     calving_date = models.DateField(blank=True, null=True) #wycielenie
     estrus_date = models.DateField(blank=True, null=True) #ruja
     note = models.TextField(blank=True, max_length=1000, null=True)

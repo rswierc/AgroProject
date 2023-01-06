@@ -36,8 +36,8 @@
     <th>Data wycielenia</th>
     <th>Data rui</th>
     <th>Kupiec</th>
-    <th>Data zakupu</th>
-    <th>Cena zakupu</th>
+    <th>Data sprzedazy</th>
+    <th>Cena sprzedazy</th>
     <th>Notatki</th>
     <th>Aktualizuj</th>
     <th>Usuń</th>
@@ -46,13 +46,13 @@
   <tr>
     <td>{{k.id}}</td>
     <td>{{k.earring_number}}</td>
-    <td>{{k.birth_date}}</td>
+    <td>{{k.birth_date|date:"d.m.Y"}}</td>
     <td>{{k.sex}}</td>
-    <td>{{k.calving_date}}</td>
-    <td>{{k.estrus_date}}</td>
-    <td>{{k.buyer}}</td>
-    <td>{{k.sale_date}}</td>
-    <td>{{k.sale_price}}</td>
+    <td>{{k.calving_date|date:"d.m.Y"}}</td>
+    <td>{{k.estrus_date|date:"d.m.Y"}}</td>
+    <td>{{k.buyer|default_if_none:''}}</td>
+    <td>{{k.sale_date|date:"d.m.Y"}}</td>
+    <td>{{k.sale_price|date:"d.m.Y"}}</td>
     <td><a class="btn btn-sm btn-info" href="{% url 'note' k.id %}">Notatka</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</a></td>

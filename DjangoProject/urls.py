@@ -20,8 +20,10 @@ from MainPage import views as MainPageView
 from Sheep import views as SheepView
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #main page urls
     path('', MainPageView.weather),
-    path('cow/table/', CowView.cows_table),
+    #cow urls
+    path('cow/table/', CowView.tableCow),
     path('cow/create/', CowView.createCow, name="create"),
     path('cow/update/<str:pk>', CowView.updateCow, name="update"),
     path('cow/delete/<str:pk>', CowView.deleteCow, name="delete"),
@@ -31,4 +33,14 @@ urlpatterns = [
     path('cow/sort/sale', CowView.sortCow_sale, name="sort_birth_sale"),
     path('cow/sort/sex', CowView.sortCow_sex, name="sort_birth_sex"),
 
+    #sheep urls
+    path('sheep/table/', SheepView.tableSheep),
+    path('sheep/create/', SheepView.createSheep, name="create"),
+    path('sheep/update/<str:pk>', SheepView.updateSheep, name="update"),
+    path('sheep/delete/<str:pk>', SheepView.deleteSheep, name="delete"),
+    path('sheep/note/<str:pk>', SheepView.noteSheep, name="note"),
+    path('sheep/search', SheepView.searchEaringNum, name="sheep/search"),
+    path('sheep/sort/birth', SheepView.sortSheep_birth, name="sort_birth_date"),
+    path('sheep/sort/sale', SheepView.sortSheep_sale, name="sort_birth_sale"),
+    path('sheep/sort/sex', SheepView.sortSheep_sex, name="sort_birth_sex"),
 ]

@@ -5,7 +5,7 @@ from .models import Cow
 from django.db.models.functions import Coalesce
 
 # main table view
-def cows_table(request):
+def tableCow(request):
     cows = Cow.objects.all()
     context = {
         'cows': cows,

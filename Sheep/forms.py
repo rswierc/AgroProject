@@ -1,9 +1,9 @@
-from .models import Cow
+from .models import Sheep
 from django import forms
 
-class CowForm(forms.ModelForm):
+class SheepForm(forms.ModelForm):
     class Meta:
-        model = Cow
+        model = Sheep
         fields = '__all__'
         widgets = {
             'earring_number' : forms.TextInput(attrs={'class': 'form-control'}),
@@ -38,9 +38,9 @@ class CowForm(forms.ModelForm):
             'note' : "Notatki",
         }
 
-class CowNote(forms.ModelForm):
+class SheepNote(forms.ModelForm):
     class Meta:
-        model = Cow
+        model = Sheep
         fields = ('note',)
         widgets = {
             'note' : forms.TextInput(attrs={'class': 'form-control'}),

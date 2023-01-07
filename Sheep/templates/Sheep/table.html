@@ -1,0 +1,68 @@
+{% extends 'MainPage/main.html' %}
+{% block content %}
+<div class="container">
+  <div class="row" style="margin-top:60px">
+    <div class="col-md-4 offset-md-2" >
+      <form action="/sheep/search">
+        <input type="text" name="earring_num" placeholder="Numer kolczyka">
+        <button class="btn btn-success" type="submit">Szukaj</button>
+      </form>
+    </div>
+
+    <div class="col-md-4" >
+      <div class="dropdown" style="margin-bottom:40px" >
+        <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sortowanie
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="{% url 'sort_birth_date' %}">Sortuj po dacie urodzenia</a></li>
+          <li><a class="dropdown-item" href="{% url 'sort_birth_sale' %}">Sortuj po cenie sprzedazy</a></li>
+          <li><a class="dropdown-item" href="{% url 'sort_birth_sex'  %}">Sortuj po płci</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<table class="center">
+  <tr>
+    <th>ID</th>
+    <th>Nr kolczyka</th>
+    <th>Data urodzenia</th> 
+    <th>Płeć</th>
+    <th>Data wycielenia</th>
+    <th>Data rui</th>
+    <th>Kupiec</th>
+    <th>Data sprzedazy</th>
+    <th>Cena sprzedazy</th>
+    <th>Notatki</th>
+    <th>Aktualizuj</th>
+    <th>Usuń</th>
+  </tr>
+  {% for k in sheep %}
+  <tr>
+    <td>{{k.id}}</td>
+    <td>{{k.earring_number}}</td>
+    <td>{{k.birth_date|date:"d.m.Y"}}</td>
+    <td>{{k.sex}}</td>
+    <td>{{k.calving_date|date:"d.m.Y"}}</td>
+    <td>{{k.estrus_date|date:"d.m.Y"}}</td>
+    <td>{{k.buyer|default_if_none:''}}</td>
+    <td>{{k.sale_date|date:"d.m.Y"}}</td>
+    <td>{{k.sale_price|date:"d.m.Y"}}</td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'note' k.id %}">Notatka</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+
+{% endblock %}
+
+
+

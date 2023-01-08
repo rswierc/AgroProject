@@ -3,8 +3,8 @@
 <div class="container">
   <div class="row" style="margin-top:60px">
     <div class="col-md-4 offset-md-2" >
-      <form action="/cow/search">
-        <input type="text" name="earring_num" placeholder="Numer kolczyka">
+      <form action="/field/search">
+        <input type="text" name="earring_num" placeholder="Numer pola">
         <button class="btn btn-success" type="submit">Szukaj</button>
       </form>
     </div>
@@ -30,32 +30,32 @@
 <table class="center">
   <tr>
     <th>ID</th>
-    <th>Nr kolczyka</th>
-    <th>Data urodzenia</th> 
-    <th>Płeć</th>
-    <th>Data wycielenia</th>
-    <th>Data rui</th>
-    <th>Kupiec</th>
-    <th>Data sprzedazy</th>
-    <th>Cena sprzedazy</th>
-    <th>Notatki</th>
+    <th>Nr działki</th>
+    <th>Nr ARiMR</th> 
+    <th>Powierzchnia</th>
+    <th>Lokalizacja</th>
+    <th>Zasobność</th>
+    <th>Kwasowość</th>
+    <th>Poprzednia uprawa</th>
+    <th>Obecna uprawa</th>
+    <th>Zabiegi agrotechniczne</th>
     <th>Aktualizuj</th>
     <th>Usuń</th>
   </tr>
-  {% for k in cows %}
+  {% for k in field %}
   <tr>
     <td>{{k.id}}</td>
-    <td>{{k.earring_number}}</td>
-    <td>{{k.birth_date|date:"d.m.Y"}}</td>
-    <td>{{k.sex}}</td>
-    <td>{{k.calving_date|date:"d.m.Y"}}</td>
-    <td>{{k.estrus_date|date:"d.m.Y"}}</td>
-    <td>{{k.buyer|default_if_none:''}}</td>
-    <td>{{k.sale_date|date:"d.m.Y"}}</td>
-    <td>{{k.sale_price|date:"d.m.Y"}}</td>
-    <td><a class="btn btn-sm btn-info" href="{% url 'note_cow' k.id %}">Notatka</a></td>
-    <td><a class="btn btn-sm btn-info" href="{% url 'update_cow' k.id %}">Edycja</a></td>
-    <td><a class="btn btn-sm btn-info" href="{% url 'delete_cow' k.id %}">Usuń</a></td>
+    <td>{{k.field_number}}</td>
+    <td>{{k.ar_label}}</td>
+    <td>{{k.area}}</td>
+    <td>{{k.location}}</td>
+    <td>{{k.soil_richness}}</td>
+    <td>{{k.acidity}}</td>
+    <td>{{k.last_seed}}</td>
+    <td>{{k.present_seed}}</td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'treatment_field' k.id %}">Podgląd</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'update_field' k.id %}">Edycja</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'delete_field' k.id %}">Usuń</a></td>
   </tr>
   {% endfor %}
 </table>

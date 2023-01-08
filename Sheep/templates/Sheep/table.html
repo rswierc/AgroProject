@@ -53,9 +53,9 @@
     <td>{{k.buyer|default_if_none:''}}</td>
     <td>{{k.sale_date|date:"d.m.Y"}}</td>
     <td>{{k.sale_price|date:"d.m.Y"}}</td>
-    <td><a class="btn btn-sm btn-info" href="{% url 'note' k.id %}">Notatka</a></td>
-    <td><a class="btn btn-sm btn-info" href="{% url 'update' k.id %}">Edycja</a></td>
-    <td><a class="btn btn-sm btn-info" href="{% url 'delete' k.id %}">Usuń</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'note_sheep' k.id %}">Notatka</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'update_sheep' k.id %}">Edycja</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'delete_sheep' k.id %}">Usuń</a></td>
   </tr>
   {% endfor %}
 </table>

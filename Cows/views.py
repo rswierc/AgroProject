@@ -60,7 +60,6 @@ def deleteCow(request, pk):
     return render(request, 'Cows/table.html', {"cows": Cow.objects.all()})
 
 
-    
 
 # search cow by earring number
 def searchEaringNum(request):

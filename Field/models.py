@@ -19,18 +19,18 @@ class Field(models.Model):
     present_seed = models.CharField(max_length=10, blank = True, null=True)
 
 class Spraying(models.Model):
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    field = models.ForeignKey('Field', on_delete=models.CASCADE)
     type = models.CharField(max_length=10, blank=True, null=True)
     amount = models.FloatField(blank = True, null=True)
 
 
 class Fertilization(models.Model):
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    field = models.ForeignKey('Field', on_delete=models.CASCADE)
     type = models.CharField(max_length=10, blank=True, null=True)
     amount = models.FloatField(blank = True, null=True)
 
 class Harvest(models.Model):
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    field = models.ForeignKey('Field', on_delete=models.CASCADE)
     harvest_date = models.DateField(blank = True, null=True)
     hight = models.FloatField(blank = True, null=True)
 

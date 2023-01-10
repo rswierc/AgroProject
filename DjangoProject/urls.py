@@ -34,15 +34,24 @@ urlpatterns = [
     path('sheep/sort/sale', SheepView.sortSheep_sale, name="sort_birth_sale"),
     path('sheep/sort/sex', SheepView.sortSheep_sex, name="sort_birth_sex"),
 
-    #field urls
+    # field urls
     path('field/table/', FieldView.tableField),
     path('field/create/', FieldView.createField, name="create_field"),
     path('field/update/<str:pk>', FieldView.updateField, name="update_field"),
     path('field/delete/<str:pk>', FieldView.deleteField, name="delete_field"),
     path('field/treatment/<str:pk>', FieldView.treatmentField, name="treatment_field"),
-    path('field/treatment/<str:pk>', FieldView.treatmentField, name="treatment_field"),
+    ####### ADD urls
+    # field spraying 
     path('field/treatment/spraying/<str:pk>', FieldView.sprayingField, name="spraying_field"),
+    path('field/treatment/spraying/<str:pk>', FieldView.sprayingField, name="spraying_field"),
+    path('field/treatment/spraying/<str:pk>', FieldView.sprayingField, name="spraying_field"),
+    # field fertilization 
     path('field/treatment/fertilization/<str:pk>', FieldView.fertilizationField, name="fertilization_field"),
+    path('field/treatment/fertilization/<str:pk>', FieldView.fertilizationField, name="fertilization_field"),
+    path('field/treatment/fertilization/<str:pk>', FieldView.fertilizationField, name="fertilization_field"),
+    # field harvest
+    path('field/treatment/harvest/<str:pk>', FieldView.harvestField, name="harvest_field"),
+    path('field/treatment/harvest/<str:pk>', FieldView.harvestField, name="harvest_field"),
     path('field/treatment/harvest/<str:pk>', FieldView.harvestField, name="harvest_field"),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

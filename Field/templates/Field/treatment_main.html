@@ -2,16 +2,44 @@
 {% block content %}
 <div class = "container">
     <div class="row justify-content-around" style="margin-top:100px">
-        <div class="col-3"> <a class="btn btn-sm btn-info" href="">Dodaj opryski</a> </div>
+        <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'spraying_field' field.id %}">Dodaj opryski</a> </div>
     
-        <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'delete_field' k.id %}">Dodaj nawożenie</a> </div>
+        <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'fertilization_field' field.id %}">Dodaj nawożenie</a> </div>
 
-        <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'delete_field' k.id %}">Dodaj zbiór </a> </div>
+        <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'harvest_field' field.id %}">Dodaj zbiór </a> </div>
     </div>
 </div>
 
 
 <table class="center">
+    <caption>Opryski</caption>
+    <tr>
+      <th>ID</th>
+      <th>Nr działki</th>
+      <th>Powierzchnia</th>
+      <th>Lokalizacja</th>
+      <th>Środek</th>
+      <th>Ilość</th>
+      <th>Aktualizuj</th>
+      <th>Usuńś</th>
+    </tr>
+    {% for k in spraying %}
+    <tr>
+      <td>{{field.id}}</td>
+      <td>{{field.field_number}}</td>
+      <td>{{field.area}}</td>
+      <td>{{field.location}}</td>
+      <td>{{k.type}}</td>
+      <td>{{k.amount}}</td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'update_field' k.id %}">Edycja</a></td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'delete_field' k.id %}">Usuń</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+<table class="center">
+  <caption>Nawozenie</caption>
     <tr>
       <th>ID</th>
       <th>Nr działki</th>
@@ -20,13 +48,13 @@
       <th>Środek</th>
       <th>Ilość</th>
     </tr>
-    {% for k in spraying %}
+    {% for k in fertilization %}
     <tr>
-      <td>{{k.id}}</td>
-      <td>{{k.field_number}}</td>
-      <td>{{k.ar_label}}</td>
-      <td>{{k.area}}</td>
-      <td>{{k.location}}</td>
+      <td>{{field.id}}</td>
+      <td>{{field.field_number}}</td>
+      <td>{{field.ar_label}}</td>
+      <td>{{field.area}}</td>
+      <td>{{field.location}}</td>
       <td>{{k.soil_richness}}</td>
       <td>{{k.acidity}}</td>
       <td><a class="btn btn-sm btn-info" href="{% url 'update_field' k.id %}">Edycja</a></td>
@@ -34,6 +62,33 @@
     </tr>
     {% endfor %}
   </table>
+
+
+
+<table class="center">
+  <caption>Zbiór</caption>
+  <tr>
+    <th>ID</th>
+    <th>Nr działki</th>
+    <th>Powierzchnia</th>
+    <th>Lokalizacja</th>
+    <th>Środek</th>
+    <th>Ilość</th>
+  </tr>
+  {% for k in harvest %}
+  <tr>
+    <td>{{field.id}}</td>
+    <td>{{field.field_number}}</td>
+    <td>{{field.ar_label}}</td>
+    <td>{{field.area}}</td>
+    <td>{{field.location}}</td>
+    <td>{{k.soil_richness}}</td>
+    <td>{{k.acidity}}</td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'update_field' k.id %}">Edycja</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'delete_field' k.id %}">Usuń</a></td>
+  </tr>
+  {% endfor %}
+</table>
 
 
 {% endblock %}

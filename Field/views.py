@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Field, Spraying, Harvest, Fertilization
 from .forms import FieldForm, SprayingForm, HarvestForm, FertilizationForm
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 # Fields table
 def tableField(request):
@@ -83,7 +84,7 @@ def sprayingField(request, pk):
             new_spraying = form.save(commit=False)
             new_spraying.field = field
             new_spraying.save()
-        return redirect("/field/table")
+        return redirect(f"/field/treatment/{pk}")
     else:
         form = SprayingForm()
 
@@ -94,46 +95,123 @@ def sprayingField(request, pk):
 
 # Delete spraying
 def deleteSpraying(request, pk):
-    Spraying.objects.filter(field = pk).delete()
-    spraying = Spraying.objects.filter(field = pk)
+    model_instance = Spraying.objects.get(id=pk)
+    related_field = model_instance.field.pk
 
+    Spraying.objects.filter(id = pk).delete()
+    return redirect(f"/field/treatment/{related_field}")
+
+
+# Update sparying 
+def updateSpraying(request, pk):
+    spraying = Spraying.objects.get(id=pk)
+    related_field = spraying.field.pk
+    form = SprayingForm(instance=spraying)
+
+    if request.method == "POST":
+        form = SprayingForm(request.POST, instance=spraying)
+        if form.is_valid():
+            form.save()
+            return redirect(f"/field/treatment/{related_field}")
+    
     context = {
-        "spraying" : spraying,
+        "form" : form,
     }
-
-    return render(request, "Field/treatment_main.html", context)
-
+    return render(request, "Field/create_spraying.html", context)
 
 
 
+#### HARVEST ####
 # Create harvest
 def harvestField(request, pk):
+    field = get_object_or_404(Field, id=pk)
+    
     if request.method == "POST":
         form = HarvestForm(request.POST)
         if form.is_valid():
-            form.save()
-        return redirect("/field/table")
+            new_harvest = form.save(commit=False)
+            new_harvest.field = field
+            new_harvest.save()
+        return redirect(f"/field/treatment/{pk}")
     else:
         form = HarvestForm()
 
     context = {
         "form" : form,
     }
-    return render(request, "Field/harvest.html", context)
+    return render(request, "Field/create_harvest.html", context)
 
 
+# Delete harvest
+def deleteHarvest(request, pk):
+    model_instance = Harvest.objects.get(id=pk)
+    related_field = model_instance.field.pk
+    Harvest.objects.filter(id = pk).delete()
+    
+    return redirect(f"/field/treatment/{related_field}")
+
+
+# Update harvest 
+def updateHarvest(request, pk):
+    harvest = Harvest.objects.get(id=pk)
+    related_field = harvest.field.pk
+    form = HarvestForm(instance=harvest)
+
+    if request.method == "POST":
+        form = HarvestForm(request.POST, instance=harvest)
+        if form.is_valid():
+            form.save()
+            return redirect(f"/field/treatment/{related_field}")
+    
+    context = {
+        "form" : form,
+    }
+    return render(request, "Field/create_harvest.html", context)
+
+
+
+#### FERTILIZATION ####
 # Create fertilization 
 def fertilizationField(request, pk):
+    field = get_object_or_404(Field, id=pk)
+    
     if request.method == "POST":
         form = FertilizationForm(request.POST)
         if form.is_valid():
-            form.save()
-        return redirect("/field/table")
+            new_fertilization = form.save(commit=False)
+            new_fertilization.field = field
+            new_fertilization.save()
+        return redirect(f"/field/treatment/{pk}")
     else:
         form = FertilizationForm()
 
     context = {
-        "form" : form
+        "form" : form,
     }
+    return render(request, "Field/create_fertilization.html", context)
 
-    return render(request, "Field/fertilization.html", context)
+# Delete fertilization
+def deleteFertilization(request, pk):
+    model_instance = Fertilization.objects.get(id=pk)
+    related_field = model_instance.field.pk
+    Fertilization.objects.filter(id = pk).delete()
+    
+    return redirect(f"/field/treatment/{related_field}")
+
+
+# Update fertilization
+def updateFertilization(request, pk):
+    fertilization = Fertilization.objects.get(id=pk)
+    related_field = fertilization.field.pk
+    form = FertilizationForm(instance=fertilization)
+
+    if request.method == "POST":
+        form = FertilizationForm(request.POST, instance=fertilization)
+        if form.is_valid():
+            form.save()
+            return redirect(f"/field/treatment/{related_field}")
+    
+    context = {
+        "form" : form,
+    }
+    return render(request, "Field/create_fertilization.html", context)

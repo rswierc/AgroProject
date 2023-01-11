@@ -42,16 +42,16 @@ urlpatterns = [
     path('field/treatment/<str:pk>', FieldView.treatmentField, name="treatment_field"),
     ####### ADD urls
     # field spraying 
-    path('field/treatment/spraying/<str:pk>', FieldView.sprayingField, name="spraying_field"),
-    path('field/treatment/spraying/<str:pk>', FieldView.sprayingField, name="spraying_field"),
-    path('field/treatment/spraying/<str:pk>', FieldView.sprayingField, name="spraying_field"),
+    path('field/treatment/spraying_create/<str:pk>', FieldView.sprayingField, name="spraying_create"),
+    path('field/treatment/spraying_delete/<str:pk>', FieldView.deleteSpraying, name="spraying_delete"),
+    path('field/treatment/spraying_update/<str:pk>', FieldView.updateSpraying, name="spraying_update"),
     # field fertilization 
-    path('field/treatment/fertilization/<str:pk>', FieldView.fertilizationField, name="fertilization_field"),
-    path('field/treatment/fertilization/<str:pk>', FieldView.fertilizationField, name="fertilization_field"),
-    path('field/treatment/fertilization/<str:pk>', FieldView.fertilizationField, name="fertilization_field"),
+    path('field/treatment/fertilization_create/<str:pk>', FieldView.fertilizationField, name="fertilization_create"),
+    path('field/treatment/fertilization_delete/<str:pk>', FieldView.deleteFertilization, name="fertilization_delete"),
+    path('field/treatment/fertilization_update/<str:pk>', FieldView.updateFertilization, name="fertilization_update"),
     # field harvest
-    path('field/treatment/harvest/<str:pk>', FieldView.harvestField, name="harvest_field"),
-    path('field/treatment/harvest/<str:pk>', FieldView.harvestField, name="harvest_field"),
-    path('field/treatment/harvest/<str:pk>', FieldView.harvestField, name="harvest_field"),
+    path('field/treatment/harvest_create/<str:pk>', FieldView.harvestField, name="harvest_create"),
+    path('field/treatment/harvest_delete/<str:pk>', FieldView.deleteHarvest, name="harvest_delete"),
+    path('field/treatment/harvest_update/<str:pk>', FieldView.updateHarvest, name="harvest_update"),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

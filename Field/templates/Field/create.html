@@ -4,6 +4,9 @@
     <form method="post" class="form-group w-50" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p}}
+        {% if error_message %}
+            <div class="alert alert-danger">{{ error_message }}</div>
+      {% endif %}
         <button type="submit">Dodaj</button>
     </form>
 </div>

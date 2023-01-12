@@ -3,6 +3,7 @@ from .models import Field, Spraying, Harvest, Fertilization
 from .forms import FieldForm, SprayingForm, HarvestForm, FertilizationForm
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.db import IntegrityError
 
 # Fields table
 def tableField(request):
@@ -18,8 +19,15 @@ def createField(request):
     if request.method == "POST":
         form = FieldForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-        return redirect("/field/table")
+            try:
+                form.save()
+            except IntegrityError:
+                context = {
+                    "form": form,
+                    "error_message": "ar_label must be unique"
+                }
+                return render(request, "Field/create.html", context)
+            return redirect("/field/table.html")
     else:
         form = FieldForm()
 
@@ -72,6 +80,37 @@ def treatmentField(request, pk):
     }
 
     return render(request, "Field/treatment_main.html", context)
+
+# SORTING #
+def sortField_area(request):
+    sorted_fields = Field.objects.all().order_by('-area').values()
+
+    context = {
+        "field" : sorted_fields,
+    }
+
+    return render(request, "Field/table.html", context)
+
+
+def sortField_location(request):
+    sorted_fields = Field.objects.all().order_by('location').values()
+
+    context = {
+        "field" : sorted_fields,
+    }
+
+    return render(request, "Field/table.html", context)
+
+
+def sortField_present(request):
+    sorted_fields = Field.objects.all().order_by('present_seed').values()
+
+    context = {
+        "field" : sorted_fields,
+    }
+
+    return render(request, "Field/table.html", context)
+
 
 ###### SPRAYING ######
 # Create spraying

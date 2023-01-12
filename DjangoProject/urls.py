@@ -40,7 +40,10 @@ urlpatterns = [
     path('field/update/<str:pk>', FieldView.updateField, name="update_field"),
     path('field/delete/<str:pk>', FieldView.deleteField, name="delete_field"),
     path('field/treatment/<str:pk>', FieldView.treatmentField, name="treatment_field"),
-    ####### ADD urls
+    path('field/sort/location', FieldView.sortField_location, name="sort_location"),
+    path('field/sort/area', FieldView.sortField_area, name="sort_area"),
+    path('field/sort/present', FieldView.sortField_present, name="sort_present"),
+
     # field spraying 
     path('field/treatment/spraying_create/<str:pk>', FieldView.sprayingField, name="spraying_create"),
     path('field/treatment/spraying_delete/<str:pk>', FieldView.deleteSpraying, name="spraying_delete"),

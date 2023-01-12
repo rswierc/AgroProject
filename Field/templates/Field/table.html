@@ -15,9 +15,9 @@
           Sortowanie
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="{% url 'sort_birth_date' %}">Sortuj po dacie urodzenia</a></li>
-          <li><a class="dropdown-item" href="{% url 'sort_birth_sale' %}">Sortuj po cenie sprzedazy</a></li>
-          <li><a class="dropdown-item" href="{% url 'sort_birth_sex'  %}">Sortuj po płci</a></li>
+          <li><a class="dropdown-item" href="{% url 'sort_location' %}">Sortuj po lokalizacji</a></li>
+          <li><a class="dropdown-item" href="{% url 'sort_area' %}">Sortuj po powierzchni</a></li>
+          <li><a class="dropdown-item" href="{% url 'sort_present'  %}">Sortuj po uprawie</a></li>
         </ul>
       </div>
     </div>
@@ -49,10 +49,10 @@
     <td>{{k.ar_label}}</td>
     <td>{{k.area}}</td>
     <td>{{k.location}}</td>
-    <td>{{k.soil_richness}}</td>
-    <td>{{k.acidity}}</td>
-    <td>{{k.last_seed}}</td>
-    <td>{{k.present_seed}}</td>
+    <td>{{k.soil_richness|default_if_none:''}}</td>
+    <td>{{k.acidity|default_if_none:''}}</td>
+    <td>{{k.last_seed|default_if_none:''}}</td>
+    <td>{{k.present_seed|default_if_none:''}}</td>
     <td><a class="btn btn-sm btn-info" href="{% url 'treatment_field' k.id %}">Podgląd</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'update_field' k.id %}">Edycja</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'delete_field' k.id %}">Usuń</a></td>

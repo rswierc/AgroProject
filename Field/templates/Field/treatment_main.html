@@ -84,7 +84,7 @@
     <td>{{field.field_number}}</td>
     <td>{{field.area}}</td>
     <td>{{field.location}}</td>
-    <td>{{k.harvest_date}}</td>
+    <td>{{k.harvest_date|date:"d.m.Y"}}</td>
     <td>{{k.hight}}</td>
     <td><a class="btn btn-sm btn-info" href="{% url 'harvest_update' k.id %}">Edycja</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'harvest_delete' k.id %}">Usuń</a></td>

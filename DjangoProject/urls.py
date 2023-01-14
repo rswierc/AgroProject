@@ -43,6 +43,7 @@ urlpatterns = [
     path('field/sort/location', FieldView.sortField_location, name="sort_location"),
     path('field/sort/area', FieldView.sortField_area, name="sort_area"),
     path('field/sort/present', FieldView.sortField_present, name="sort_present"),
+    path('field/npk/<str:pk>', FieldView.fieldNPK, name="fieldNPK"), #main NPK view (npk.table.html)
 
     # field spraying 
     path('field/treatment/spraying_create/<str:pk>', FieldView.sprayingField, name="spraying_create"),
@@ -56,5 +57,14 @@ urlpatterns = [
     path('field/treatment/harvest_create/<str:pk>', FieldView.harvestField, name="harvest_create"),
     path('field/treatment/harvest_delete/<str:pk>', FieldView.deleteHarvest, name="harvest_delete"),
     path('field/treatment/harvest_update/<str:pk>', FieldView.updateHarvest, name="harvest_update"),
+
+    #### NPK FILED ####
+    path('field/npk/add_field_values/<str:pk>', FieldView.field_values_NPK, name="field_values"), #add field npk values (npk_add_field_values)
+    path('field/npk/count_product_npk/<str:pk>', FieldView.count_product_NPK, name="count_product"), #count amount of product to use
+    path('field/npk/add_product/<str:pk>', FieldView.add_product_NPK, name="add_product"), #add new product
+
+
+
+    
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

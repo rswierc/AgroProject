@@ -35,3 +35,17 @@ class Harvest(models.Model):
     hight = models.FloatField(blank = True, null=True)
 
 
+class NPK(models.Model):
+    field = models.ForeignKey('Field', on_delete=models.CASCADE)
+    nitrogen_field = models.FloatField(blank=True, null=True)
+    phosphorus_field = models.FloatField(blank=True, null=True)
+    potassium_field = models.FloatField(blank=True, null=True)
+
+
+class NPK_Product(models.Model):
+    nitrogen_product = models.FloatField(blank=True, null=True)
+    phosphorus_product = models.FloatField(blank=True, null=True)
+    potassium_product = models.FloatField(blank=True, null=True)
+
+
+

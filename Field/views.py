@@ -254,3 +254,42 @@ def updateFertilization(request, pk):
         "form" : form,
     }
     return render(request, "Field/create_fertilization.html", context)
+
+
+
+#### NPK ####
+"""Main view in NPK with options to: add field NPK values, 
+add new product, count amount of product to use on field"""
+# MAIN
+def fieldNPK(request, pk):
+    field = Field.objects.get(id=pk)
+
+    context = {
+        "field" : field,
+    }
+
+    return render(request, "Field/npk_table.html", context)
+
+
+# View to add new field NPK value, triggered by one of 3 buttons
+def field_values_NPK(request, pk):
+    context = {
+
+    }
+    return render(request, "Field/npk_add_field_values.html", context)
+
+
+# View to add new product, triggered by one of 3 buttons
+def add_product_NPK(request, pk):
+    context = {
+
+    }
+    return render(request, "Field/npk_add_product.html", context)
+
+
+# View to count amount of product to use on vield, triggered by one of 3 buttons
+def count_product_NPK(request, pk):
+    context = {
+
+    }
+    return render(request, "Field/npk_table.html", context)

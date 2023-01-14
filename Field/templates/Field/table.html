@@ -39,6 +39,7 @@
     <th>Poprzednia uprawa</th>
     <th>Obecna uprawa</th>
     <th>Zabiegi agrotechniczne</th>
+    <th>NPK</th>
     <th>Aktualizuj</th>
     <th>Usuń</th>
   </tr>
@@ -54,6 +55,7 @@
     <td>{{k.last_seed|default_if_none:''}}</td>
     <td>{{k.present_seed|default_if_none:''}}</td>
     <td><a class="btn btn-sm btn-info" href="{% url 'treatment_field' k.id %}">Podgląd</a></td>
+    <td><a class="btn btn-sm btn-info" href="{% url 'fieldNPK' k.id %}">NPK</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'update_field' k.id %}">Edycja</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'delete_field' k.id %}">Usuń</a></td>
   </tr>

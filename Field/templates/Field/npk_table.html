@@ -9,4 +9,34 @@
         <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'count_product' field.id %}">Przelicz NPK</a> </div>
     </div>
 </div>
+
+<table class="center">
+    <caption>Pomiary</caption>
+    <tr>
+        <th>ID</th>
+        <th>Nr działki</th>
+        <th>Powierzchnia</th>
+        <th>Lokalizacja</th>
+        <th>Azot[N]</th>
+        <th>Fosfor[P]</th>
+        <th>Potas[K]</th>
+        <th>Data pomiaru</th>
+        <th>Aktualizuj</th>
+        <th>Usuń</th>
+    </tr>
+    {% for k in measurement %}
+    <tr>
+      <td>{{field.id}}</td>
+      <td>{{field.field_number}}</td>
+      <td>{{field.area}}</td>
+      <td>{{field.location}}</td>
+      <td>{{k.nitrogen_field|default_if_none:''}}</td>
+      <td>{{k.phosphorus_field|default_if_none:''}}</td>
+      <td>{{k.potassium_field|default_if_none:''}}</td>
+      <td>{{k.measurement_date|default_if_none:''}}</td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'update_field' k.id %}">Edycja</a></td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'field_npk_delete' k.id %}">Usuń</a></td>
+    </tr>
+    {% endfor %}
+  </table>
 {% endblock %}

@@ -59,9 +59,14 @@ urlpatterns = [
     path('field/treatment/harvest_update/<str:pk>', FieldView.updateHarvest, name="harvest_update"),
 
     #### NPK FILED ####
+    # new field npk values
     path('field/npk/add_field_values/<str:pk>', FieldView.field_values_NPK, name="field_values"), #add field npk values (npk_add_field_values)
-    path('field/npk/count_product_npk/<str:pk>', FieldView.count_product_NPK, name="count_product"), #count amount of product to use
+    path('field/npk/delete/<str:pk>', FieldView.delete_field_values_NPK, name="field_npk_delete"),
+    path('field/treatment/fertilization_update/<str:pk>', FieldView.updateFertilization, name="fertilization_update"),
+    # new products
     path('field/npk/add_product/<str:pk>', FieldView.add_product_NPK, name="add_product"), #add new product
+    # count
+    path('field/npk/count_product_npk/<str:pk>', FieldView.count_product_NPK, name="count_product"), #count amount of product to use
 
 
 

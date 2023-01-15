@@ -1,4 +1,4 @@
-from .models import Field, Harvest, Spraying, Fertilization
+from .models import Field, Harvest, Spraying, Fertilization, NPK_Field, NPK_Product
 from django import forms
 
 class FieldForm(forms.ModelForm):
@@ -75,3 +75,24 @@ class HarvestForm(forms.ModelForm):
             'amount' : "Ilość"
         }
 
+
+class NPK_FieldForm(forms.ModelForm):
+    class Meta:
+        model = NPK_Field
+        exclude = ('field',)
+        fields = ['measurement_date', 'nitrogen_field', 'phosphorus_field', 'potassium_field']
+        widgets = {
+            'nitrogen_field' : forms.NumberInput(attrs={'class': 'form-control'}),
+            'phosphorus_field' : forms.NumberInput(attrs={'class': 'form-control'}),
+            'potassium_field' : forms.NumberInput(attrs={'class': 'form-control'}),
+            'measurement_date' : forms.DateInput(format=('%Y-%m-%d'),
+                attrs={'class': 'form-control',
+                        'type': 'date'}),
+        }
+
+        labels = {
+            'nitrogen_field' : "Azot[N]",
+            'phosphorus_field' : "Fosfor[P]",
+            'potassium_field' : "Potas[K]",
+            'measurement_date' : "Data pomiaru",
+        }

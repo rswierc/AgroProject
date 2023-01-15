@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Field, Spraying, Harvest, Fertilization
-from .forms import FieldForm, SprayingForm, HarvestForm, FertilizationForm
+from .models import Field, Spraying, Harvest, Fertilization, NPK_Product, NPK_Field
+from .forms import FieldForm, SprayingForm, HarvestForm, FertilizationForm, NPK_FieldForm
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.db import IntegrityError
@@ -263,9 +263,10 @@ add new product, count amount of product to use on field"""
 # MAIN
 def fieldNPK(request, pk):
     field = Field.objects.get(id=pk)
-
+    measurement = NPK_Field.objects.filter(field=pk)
     context = {
         "field" : field,
+        "measurement" : measurement,
     }
 
     return render(request, "Field/npk_table.html", context)
@@ -273,10 +274,32 @@ def fieldNPK(request, pk):
 
 # View to add new field NPK value, triggered by one of 3 buttons
 def field_values_NPK(request, pk):
-    context = {
+    field = get_object_or_404(Field, id=pk)
+    
+    if request.method == "POST":
+        form = NPK_FieldForm(request.POST)
+        if form.is_valid():
+            new_npk = form.save(commit=False)
+            new_npk.field = field
+            new_npk.save()
+        return redirect(f"/field/npk/{pk}")
+    else:
+        form = NPK_FieldForm()
 
+    context = {
+        "form" : form,
+        "field" : field,
     }
+
     return render(request, "Field/npk_add_field_values.html", context)
+
+
+def delete_field_values_NPK(request, pk):
+    model_instance = NPK_Field.objects.get(id=pk)
+    related_field = model_instance.field.pk
+    NPK_Field.objects.filter(id = pk).delete()
+    
+    return redirect(f"/field/npk/{related_field}")
 
 
 # View to add new product, triggered by one of 3 buttons
@@ -292,4 +315,9 @@ def count_product_NPK(request, pk):
     context = {
 
     }
-    return render(request, "Field/npk_table.html", context)
+    return render(request, "Field/npk_table.html", context) 
+
+
+# ON main page, two tables:
+#1. historic measurments
+#2. All added products by user

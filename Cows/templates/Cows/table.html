@@ -15,9 +15,9 @@
           Sortowanie
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="{% url 'sort_birth_date' %}">Sortuj po dacie urodzenia</a></li>
-          <li><a class="dropdown-item" href="{% url 'sort_birth_sale' %}">Sortuj po cenie sprzedazy</a></li>
-          <li><a class="dropdown-item" href="{% url 'sort_birth_sex'  %}">Sortuj po płci</a></li>
+          <li><a class="dropdown-item" href="{% url 'cow_sort_birth_date' %}">Sortuj po dacie urodzenia</a></li>
+          <li><a class="dropdown-item" href="{% url 'cow_sort_birth_sale' %}">Sortuj po cenie sprzedazy</a></li>
+          <li><a class="dropdown-item" href="{% url 'cow_sort_birth_sex'  %}">Sortuj po płci</a></li>
         </ul>
       </div>
     </div>
@@ -52,7 +52,7 @@
     <td>{{k.estrus_date|date:"d.m.Y"}}</td>
     <td>{{k.buyer|default_if_none:''}}</td>
     <td>{{k.sale_date|date:"d.m.Y"}}</td>
-    <td>{{k.sale_price|date:"d.m.Y"}}</td>
+    <td>{{k.sale_price|default_if_none:''}}</td>
     <td><a class="btn btn-sm btn-info" href="{% url 'note_cow' k.id %}">Notatka</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'update_cow' k.id %}">Edycja</a></td>
     <td><a class="btn btn-sm btn-info" href="{% url 'delete_cow' k.id %}">Usuń</a></td>

@@ -96,3 +96,26 @@ class NPK_FieldForm(forms.ModelForm):
             'potassium_field' : "Potas[K]",
             'measurement_date' : "Data pomiaru",
         }
+
+
+class NPK_ProductFrom(forms.ModelForm):
+    class Meta:
+        model = NPK_Product
+        fields = '__all__'
+        widgets = {
+            'catalog_number' : forms.TextInput(attrs={'class': 'form-control'}),
+            'product_firm' : forms.TextInput(attrs={'class': 'form-control'}),
+            'product_name' : forms.TextInput(attrs={'class': 'form-control'}),
+            'nitrogen_product' : forms.NumberInput(attrs={'class': 'form-control'}),
+            'phosphorus_product' : forms.NumberInput(attrs={'class': 'form-control'}),
+            'potassium_product' : forms.NumberInput(attrs={'class': 'form-control'}),
+            }
+        
+        labels = {
+            'catalog_number' : 'Numer katalogowy',
+            'product_firm' : 'Firma',
+            'product_name' : 'Nazwa produktu',
+            'nitrogen_product' : "Azot[N]",
+            'phosphorus_product' : "Fosfor[P]",
+            'potassium_product' : "Potas[K]",
+        }

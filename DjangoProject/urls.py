@@ -19,9 +19,9 @@ urlpatterns = [
     path('cow/delete/<str:pk>', CowView.deleteCow, name="delete_cow"),
     path('cow/note/<str:pk>', CowView.noteCow, name="note_cow"),
     path('cow/search', CowView.searchEaringNum, name="cow/search"),
-    path('cow/sort/birth', CowView.sortCow_birth, name="sort_birth_date"),
-    path('cow/sort/sale', CowView.sortCow_sale, name="sort_birth_sale"),
-    path('cow/sort/sex', CowView.sortCow_sex, name="sort_birth_sex"),
+    path('cow/sort/birth', CowView.sortCow_birth, name="cow_sort_birth_date"),
+    path('cow/sort/sale', CowView.sortCow_sale, name="cow_sort_birth_sale"),
+    path('cow/sort/sex', CowView.sortCow_sex, name="cow_sort_birth_sex"),
 
     #sheep urls
     path('sheep/table/', SheepView.tableSheep),
@@ -62,9 +62,12 @@ urlpatterns = [
     # new field npk values
     path('field/npk/add_field_values/<str:pk>', FieldView.field_values_NPK, name="field_values"), #add field npk values (npk_add_field_values)
     path('field/npk/delete/<str:pk>', FieldView.delete_field_values_NPK, name="field_npk_delete"),
-    path('field/treatment/fertilization_update/<str:pk>', FieldView.updateFertilization, name="fertilization_update"),
+    path('field/npk/update/<str:pk>', FieldView.update_field_values_NPK, name="field_npk_update"),
     # new products
     path('field/npk/add_product/<str:pk>', FieldView.add_product_NPK, name="add_product"), #add new product
+    path('field/npk/delete_product/<str:pk>', FieldView.delete_product_NPK, name="delete_product"), #delete product
+    path('field/npk/update_product/<str:pk>', FieldView.update_product_NPK, name="update_product"), #update product
+    path('field/npk/product_list/', FieldView.product_list_NPK, name="product_list"), #table with all products
     # count
     path('field/npk/count_product_npk/<str:pk>', FieldView.count_product_NPK, name="count_product"), #count amount of product to use
 

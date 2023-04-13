@@ -1,0 +1,28 @@
+{% extends 'MainPage/main.html' %}
+{% block content %}
+<table class="center">
+    <caption>Produkty</caption>
+    <tr>
+        <th>Nr katalogowy</th>
+        <th>Firma</th>
+        <th>Nazwa produktu</th>
+        <th>Azot[N]</th>
+        <th>Fosfor[P]</th>
+        <th>Potas[K]</th>
+        <th>Aktualizuj</th>
+        <th>Usuń</th>
+    </tr>
+    {% for k in product %}
+    <tr>
+      <td>{{k.catalog_number|default_if_none:''}}</td>
+      <td>{{k.product_firm|default_if_none:''}}</td>
+      <td>{{k.product_name|default_if_none:''}}</td>
+      <td>{{k.nitrogen_product|default_if_none:''}}</td>
+      <td>{{k.phosphorus_product|default_if_none:''}}</td>
+      <td>{{k.potassium_product|default_if_none:''}}</td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'update_product' k.id %}">Edycja</a></td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'delete_product' k.id %}">Usuń</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

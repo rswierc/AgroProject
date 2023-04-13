@@ -44,6 +44,9 @@ class NPK_Field(models.Model):
 
 
 class NPK_Product(models.Model):
+    catalog_number = models.CharField(max_length=10, blank=True, null=True)
+    product_firm = models.CharField(max_length=10, blank=True, null=True)
+    product_name = models.CharField(max_length=10, blank=True, null=True)
     nitrogen_product = models.FloatField(blank=True, null=True)
     phosphorus_product = models.FloatField(blank=True, null=True)
     potassium_product = models.FloatField(blank=True, null=True)

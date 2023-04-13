@@ -4,9 +4,11 @@
     <div class="row justify-content-around" style="margin-top:100px">
         <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'field_values' field.id %}">Dodaj wartości NPK</a> </div>
     
-        <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'add_product' field.id %}"> Dodaj środek</a> </div>
+        <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'add_product' field.id%}"> Dodaj środek</a> </div>
 
         <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'count_product' field.id %}">Przelicz NPK</a> </div>
+        
+        <div class="col-3"> <a class="btn btn-sm btn-info" href="{% url 'product_list'  %}">Lista środków</a> </div>
     </div>
 </div>
 
@@ -33,10 +35,12 @@
       <td>{{k.nitrogen_field|default_if_none:''}}</td>
       <td>{{k.phosphorus_field|default_if_none:''}}</td>
       <td>{{k.potassium_field|default_if_none:''}}</td>
-      <td>{{k.measurement_date|default_if_none:''}}</td>
-      <td><a class="btn btn-sm btn-info" href="{% url 'update_field' k.id %}">Edycja</a></td>
+      <td>{{k.measurement_date|date:"d.m.Y"}}</td>
+      <td><a class="btn btn-sm btn-info" href="{% url 'field_npk_update' k.id %}">Edycja</a></td>
       <td><a class="btn btn-sm btn-info" href="{% url 'field_npk_delete' k.id %}">Usuń</a></td>
     </tr>
     {% endfor %}
   </table>
-{% endblock %}
+
+
+ {% endblock %}

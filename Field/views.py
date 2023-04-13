@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Field, Spraying, Harvest, Fertilization, NPK_Product, NPK_Field
-from .forms import FieldForm, SprayingForm, HarvestForm, FertilizationForm, NPK_FieldForm
+from .forms import FieldForm, SprayingForm, HarvestForm, FertilizationForm, NPK_FieldForm, NPK_ProductFrom
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.db import IntegrityError
@@ -264,14 +264,16 @@ add new product, count amount of product to use on field"""
 def fieldNPK(request, pk):
     field = Field.objects.get(id=pk)
     measurement = NPK_Field.objects.filter(field=pk)
+    product = NPK_Product.objects.all()
     context = {
         "field" : field,
         "measurement" : measurement,
+        "product" : product,
     }
 
     return render(request, "Field/npk_table.html", context)
 
-
+##### FIELD NPK #####
 # View to add new field NPK value, triggered by one of 3 buttons
 def field_values_NPK(request, pk):
     field = get_object_or_404(Field, id=pk)
@@ -293,7 +295,7 @@ def field_values_NPK(request, pk):
 
     return render(request, "Field/npk_add_field_values.html", context)
 
-
+# Delete Field NPK
 def delete_field_values_NPK(request, pk):
     model_instance = NPK_Field.objects.get(id=pk)
     related_field = model_instance.field.pk
@@ -302,22 +304,82 @@ def delete_field_values_NPK(request, pk):
     return redirect(f"/field/npk/{related_field}")
 
 
-# View to add new product, triggered by one of 3 buttons
-def add_product_NPK(request, pk):
-    context = {
+# Update Field NPK
+def update_field_values_NPK(request, pk):
+    model_instance = NPK_Field.objects.get(id=pk)
+    field = get_object_or_404(Field, id=pk)
+    
+    if request.method == "POST":
+        form = NPK_FieldForm(request.POST, instance=model_instance)
+        if form.is_valid():
+            new_npk = form.save(commit=False)
+            new_npk.field = field
+            new_npk.save()
+        return redirect(f"/field/npk/{pk}")
+    else:
+        form = NPK_FieldForm(instance=model_instance)
 
+    context = {
+        "form" : form,
+        "field" : field,
+    }
+
+    return render(request, "Field/npk_add_field_values.html", context)
+
+
+##### PRODUCT #####
+# list of products
+def product_list_NPK(request):
+    product = NPK_Product.objects.all()
+    context = {
+        "product" : product,
+    }
+
+    return render(request, "Field/product_list.html", context)
+
+
+# create product
+def add_product_NPK(request, pk):
+    if request.method == "POST":
+        form = NPK_ProductFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            
+        return redirect(f"/field/npk/{pk}")
+    else:
+        form = NPK_ProductFrom()
+    context = {
+        "form" : form,
+    }
+    return render(request, "Field/npk_add_product.html", context)
+
+# delete product
+def delete_product_NPK(request, pk):
+    NPK_Product.objects.filter(id = pk).delete()
+    return redirect("/field/npk/product_list/")
+
+
+#update product
+def update_product_NPK(request, pk):
+    product = NPK_Product.objects.get(id = pk)
+    if request.method == "POST":
+        form = NPK_ProductFrom(request.POST, instance = product)
+        if form.is_valid():
+            form.save()
+            
+        return redirect(f"/field/npk/{pk}")
+    else:
+        form = NPK_ProductFrom(instance = product)
+    context = {
+        "form" : form,
     }
     return render(request, "Field/npk_add_product.html", context)
 
 
+#### Calculations ####
 # View to count amount of product to use on vield, triggered by one of 3 buttons
 def count_product_NPK(request, pk):
     context = {
 
     }
     return render(request, "Field/npk_table.html", context) 
-
-
-# ON main page, two tables:
-#1. historic measurments
-#2. All added products by user
